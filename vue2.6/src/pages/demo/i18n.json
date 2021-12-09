@@ -1,0 +1,11 @@
+{
+  "zh": {
+    "hello": "你好-scoped"
+  },
+  "en": {
+    "hello": "hello-scoped"
+  },
+  "tw": {
+    "hello": "你好(繁体)-scoped"
+  }
+}

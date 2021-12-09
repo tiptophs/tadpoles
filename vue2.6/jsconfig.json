@@ -1,0 +1,13 @@
+// 配置别名的智能提示方案，vscode内可以智能识别别名和路径
+// 注意：vscode的别名配合和webpack的别名配置无关，项目编译运行以webpack的alias为准，本文件仅用于智能提示
+// 优点：1路径别名智能提示example：`@/`将会展示后续路径; 2: 点击别名路径进入相应文件
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,  // 为建议的es装饰器提供实验支持,用于去除代码中高版本es的红色下划线。
+        "baseUrl": "./", // 基本目录，用于解析非相对模块名称、
+        "paths": { // 指定相对于baseUrl选项计算的路径映射，需要与webpack的alias对齐
+            "@/*":["src/*"]
+        }
+    },
+    "exclude": ["node_modules", "dist"] // 排除文件，优化加载速度
+}
