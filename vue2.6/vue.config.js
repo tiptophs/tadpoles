@@ -19,7 +19,7 @@ const proxyTable = require('./src/config/proxy.config.js')
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 module.exports = {
   // 部署应用包时的基本 URL。
-  publicPath: IS_PROD ? '/project/' : '/project/',
+  publicPath: IS_PROD ? '/' : '/',
   // 是否开启eslint-loader的验证
   lintOnSave: IS_PROD ? 'default' : 'warning',
   // 输出地址 构建时传入 --no-clean 可关闭该行为

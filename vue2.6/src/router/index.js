@@ -2,7 +2,7 @@ import { initRouter } from '@/common/vue-bucket-init/router'
 import { routeInterceptor } from './intercept'
 
 // 抛出router, routes
-const { newVueRouter, routes } = initRouter('/demo', '/demo')
+const { newVueRouter, routes } = initRouter('/home', '/home')
 
 // 创建自定义router
 const router = newVueRouter({

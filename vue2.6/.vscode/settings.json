@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.rulers": [100],
+  "editor.rulers": [120],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
@@ -8,7 +8,7 @@
   "eslint.codeActionsOnSave.mode": "all",
   "html.format.enable": false,
   "json.format.enable": false,
-  "prettier.printWidth": 100,
+  "prettier.printWidth": 120,
   "[json,html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
