@@ -1,25 +1,5 @@
 import { camelCase } from 'camel-case'
-// 通用文案定义在global中
-const message = {
-  zh: {
-    global: {
-      global: 'global11111',
-      hello: 'hello-golbal',
-    },
-  },
-  en: {
-    global: {
-      global: '全局',
-      hello: 'hello-全局',
-    },
-  },
-  tw: {
-    global: {
-      global: '繁体',
-      hello: 'hello-繁体',
-    },
-  },
-}
+import { message } from '@/config/lang'
 
 // 语言列表
 const langs = Object.keys(message)

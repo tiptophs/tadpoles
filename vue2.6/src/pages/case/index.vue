@@ -10,6 +10,9 @@
             <a href="https://cn.vuejs.org/v2/guide/" rel="noopener" target="_blank">vue官网学习</a>
           </li>
           <li>
+            <a href="https://element.eleme.cn/#/zh-CN" rel="noopener" target="_blank">Element UI</a>
+          </li>
+          <li>
             <router-link :to="{ name: 'case', query: {} }">Demo展示</router-link>
           </li>
         </ul>
@@ -20,45 +23,19 @@
 
 <script>
 export default {
-  metaInfo: {
-    title: '首页',
-  },
   components: {},
   props: {},
   data() {
-    return {
-      value: new Date(),
-    }
+    return {}
   },
-
   beforeCreate() {},
-  created() {
-    console.log(process.env.NODE_ENV, '==============')
-    //打印总体store
-    console.log(this.$store)
-    // 调用mutations的方法修改state
-    this.$store.commit('account/setUserNameIds', {
-      name: '张三',
-      uid: '10001',
-    })
-    // getters的方式输出内容
-    console.log(this.$store.getters['account/getUserNameIds'], 'store')
-    // actions调用方法
-    this.$store.dispatch('account/axiosSetUameIds')
-    console.log(this.$store.state.account.info)
-  },
-  mounted() {
-    console.log(this.$i18n, 'i18n')
-    console.log(this.$t)
-    console.log(this, 'this-vue')
-  },
+  created() {},
+  mounted() {},
   beforeUpdate() {},
   updated() {},
   beforeDestroy() {},
   destroyed() {},
-  methods: {
-    test() {},
-  },
+  methods: {},
 }
 </script>
 <style lang="less" scoped>

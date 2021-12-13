@@ -2,9 +2,9 @@
 // element 常用组件引用
 
 //import Vue from "vue";
-import { Table, TableColumn, Calendar } from 'element-ui'
+import { Table, TableColumn, Calendar, Select } from 'element-ui'
 
-const elComponents = [Table, TableColumn, Calendar]
+const elComponents = [Table, TableColumn, Calendar, Select]
 
 // 注册特殊this调用组件
 
