@@ -1,59 +1,36 @@
 <template>
   <div class="case-container">
     <div class="lang-test">
+      <span class="goback" @click="goback">返回</span>
       <span>{{ $t('global.uname') }}<span>张三</span></span>
       <span>{{ $t('global.age') }}<span>12</span></span>
       <!--切换语言按钮-->
-      <el-select v-model="value" placeholder="请选择">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" size="mini" :value="item.value">
-        </el-option>
+      <el-select v-model="lang" placeholder="请选择语言" size="small" @change="changeLang">
+        <el-option v-for="item in language" :key="item.key" :label="item.label" :value="item.key"> </el-option>
       </el-select>
+      <div class="lang-scope-area">{{ $t('case.vue') }}</div>
     </div>
     <!--table列表-->
-    <!-- <el-table class="demo" :data="tableData" style="width: 100%">
-      <el-table-column label="日期" prop="date" width="180"> </el-table-column>
-      <el-table-column label="姓名" prop="name" width="180"> </el-table-column>
-      <el-table-column label="地址" prop="address"> </el-table-column>
-    </el-table>
-    <timp></timp>
-    <div>{{ $t('global') }}</div>
-    <div>{{ $t('hello') }}</div> -->
-
-    <!--日历-->
-    <!-- <el-calendar v-model="dataTime"> </el-calendar> -->
-
-    <div class="timp" @click="goback">路由测试</div>
+    <div class="el-components">
+      <!--日历-->
+      <div class="e-calendar">
+        <el-calendar v-model="dataTime"> </el-calendar>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { language, tableData } from './config'
+import { setLanguage, getLanguage } from '@/common/i18n/language'
 export default {
   data() {
     return {
       dataTime: new Date(),
-      options: [
-        {
-          value: '选项1',
-          label: '黄金糕',
-        },
-        {
-          value: '选项2',
-          label: '双皮奶',
-        },
-        {
-          value: '选项3',
-          label: '蚵仔煎',
-        },
-        {
-          value: '选项4',
-          label: '龙须面',
-        },
-        {
-          value: '选项5',
-          label: '北京烤鸭',
-        },
-      ],
-      value: '',
+      language: Object.freeze(language),
+      tableData,
+      // 默认中文
+      lang: getLanguage(),
     }
   },
   created() {
@@ -77,12 +54,18 @@ export default {
     console.log(this, 'this-vue')
   },
   methods: {
+    // 切换语言
+    changeLang(lang) {
+      this.$i18n.locale = lang
+      setLanguage(lang)
+    },
+    // 返回
     goback() {
       this.$router.push({
-        path: '/others',
+        path: '/home',
         query: {
-          name: 'huang',
-          value: 'shuo',
+          name: 'zhang',
+          value: 'san',
         },
       })
     },
@@ -98,6 +81,29 @@ export default {
   padding: 15px;
   span {
     margin-right: 25px;
+  }
+  .goback {
+    float: left;
+    border: 1px solid #dadada;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 25px;
+    &:hover {
+      background: lightblue;
+      color: white;
+    }
+  }
+  .lang-scope-area {
+    margin-top: 25px;
+    text-align: center;
+    padding: 30px 225px;
+  }
+}
+.el-components {
+  text-align: center;
+  .e-calendar {
+    width: 625px;
   }
 }
 </style>

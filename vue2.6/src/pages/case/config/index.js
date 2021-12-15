@@ -4,12 +4,28 @@
 export const tableData = [
   {
     date: '2016-05-02',
-    name: this.$t('hello'),
+    name: '1111',
     address: '上海市普陀区金沙江路 1518 弄',
   },
   {
     date: '2016-05-04',
-    name: this.$t('hello'),
+    name: '11',
     address: '上海市普陀区金沙江路 1517 弄',
+  },
+]
+
+// 默认语言选项文件
+export const language = [
+  {
+    label: '中文',
+    key: 'zh',
+  },
+  {
+    label: '英文',
+    key: 'en',
+  },
+  {
+    label: '繁体',
+    key: 'tw',
   },
 ]

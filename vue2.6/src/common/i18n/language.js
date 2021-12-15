@@ -38,7 +38,7 @@ export function getLanguage() {
  * @param lang 当前语言 'en', 'zh', 'tw'
  */
 export function setLanguage(lang) {
-  Cookie.set('language', lang, { path: '/', domain: window.SERVER_NAME })
+  Cookie.set('language', lang, { path: '/', domain: window.location.hostname })
   window.localStorage.setItem('language', lang)
 }
 
