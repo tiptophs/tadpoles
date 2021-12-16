@@ -10,9 +10,8 @@
       </el-select>
       <div class="lang-scope-area">{{ $t('case.vue') }}</div>
     </div>
-    <!--table列表-->
+    <!--日历-->
     <div class="el-components">
-      <!--日历-->
       <div class="e-calendar">
         <el-calendar v-model="dataTime"> </el-calendar>
       </div>
@@ -21,14 +20,13 @@
 </template>
 
 <script>
-import { language, tableData } from './config'
+import { language } from './config'
 import { setLanguage, getLanguage } from '@/common/i18n/language'
 export default {
   data() {
     return {
       dataTime: new Date(),
       language: Object.freeze(language),
-      tableData,
       // 默认中文
       lang: getLanguage(),
     }
@@ -101,9 +99,10 @@ export default {
   }
 }
 .el-components {
-  text-align: center;
+  display: flex;
+  justify-content: center;
   .e-calendar {
-    width: 625px;
+    width: 825px;
   }
 }
 </style>

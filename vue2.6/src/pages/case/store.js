@@ -30,7 +30,7 @@ export default {
     },
   },
   actions: {
-    // 按需加载结构出需要的数据
+    // 按需加载解构出需要的数据
     axiosSetUameIds({ commit, state }) {
       commit('getUserInfo', { uid: state.userId })
       setTimeout(() => {}, 300)
