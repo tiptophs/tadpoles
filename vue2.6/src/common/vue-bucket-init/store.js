@@ -29,18 +29,15 @@ const baseStore = getModules(require.context('../../store/automatic', false, /\.
 })
 
 // 业务store加载逻辑
-const pageStore = getModules(
-  require.context('../../pages/', true, /store\.js$/),
-  (path, modules) => {
-    const keyName = camelCase(path.split(/\//).reverse()[1])
-    // 业务逻辑里面添加store.js 按照上级文件名命名，多层嵌套防止key重复，需要添加验证
-    if (Object.keys(modules).includes(keyName)) {
-      throw new Error('存在重复的key:' + path)
-    } else {
-      return keyName
-    }
-  },
-)
+const pageStore = getModules(require.context('../../pages/', true, /store\.js$/), (path, modules) => {
+  const keyName = camelCase(path.split(/\//).reverse()[1])
+  // 业务逻辑里面添加store.js 按照上级文件名命名，多层嵌套防止key重复，需要添加验证
+  if (Object.keys(modules).includes(keyName)) {
+    throw new Error('存在重复的key:' + path)
+  } else {
+    return keyName
+  }
+})
 
 /**
  * 定义store的初始化方法
