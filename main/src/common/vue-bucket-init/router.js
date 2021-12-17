@@ -37,9 +37,9 @@ function pathToRouter(routes, pathInfo) {
  */
 const initRouter = function (noPath, rootDirect) {
   // 定义非匹配路由的跳转地址
-  const _NO_MATCH_ROUTER_PATH = noPath || '/demo'
+  // const _NO_MATCH_ROUTER_PATH = noPath || '/demo'
   // 定义输入/根节点后的redirect
-  const _ROOT_MATCH_REDIRECT = rootDirect || '/demo'
+  // const _ROOT_MATCH_REDIRECT = rootDirect || '/'
 
   // 定义通用路由
   const routes = [
@@ -47,7 +47,7 @@ const initRouter = function (noPath, rootDirect) {
       path: '/',
       name: 'Layout',
       component: Layout,
-      redirect: _ROOT_MATCH_REDIRECT,
+      // redirect: _ROOT_MATCH_REDIRECT,
       children: [],
     },
   ]
@@ -79,12 +79,12 @@ const initRouter = function (noPath, rootDirect) {
     }
     const mixConfig = Object.assign(defaultConfig, config)
     // 路由通配符,当项目无法匹配到相应的路由地址将会走这里,他必须写在最下面
-    mixConfig.routes.push({
-      path: '*',
-      beforeEnter: () => {
-        window.location.href = _NO_MATCH_ROUTER_PATH
-      },
-    })
+    // mixConfig.routes.push({
+    //   path: '*',
+    //   beforeEnter: () => {
+    //     window.location.href = _NO_MATCH_ROUTER_PATH
+    //   },
+    // })
     return new VueRouter(mixConfig)
   }
   return {

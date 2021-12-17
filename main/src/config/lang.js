@@ -1,21 +1,12 @@
 // 通用文案定义在global中
 export const message = {
   zh: {
-    global: {
-      uname: '姓名: ',
-      age: '年龄: ',
-    },
+    global: {},
   },
   en: {
-    global: {
-      uname: 'full name: ',
-      age: 'Age: ',
-    },
+    global: {},
   },
   tw: {
-    global: {
-      uname: '姓名: ',
-      age: '年齡: ',
-    },
+    global: {},
   },
 }
