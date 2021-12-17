@@ -29,7 +29,7 @@ new Vue({
 
 // 注册微应用
 registerMicroApps(microApps, {
-  beforeLoad: () => {
+  beforeLoad: app => {
     console.log('before load app.name====>>>>>', app.name)
   },
   beforeMount: [
