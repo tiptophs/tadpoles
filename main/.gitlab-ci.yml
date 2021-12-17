@@ -1,0 +1,86 @@
+# #设置全局变量
+variables:
+  DIST_PATH: '/opt/nfs/gitlab-runner/web/$CI_PROJECT_NAME'
+  NPM: 'http://npm.yb.com'
+  CLEAR_PATH: 'http://gitlab-runner.yb.com/configs/clear.sh'
+  
+#发布版本 && 本地文件夹名称
+before_script:
+  - git config --global user.name "ybCI"
+  - git config --global user.email "huangshuo@yuanbaogo.com"
+  - export BUILD_VERSION=${Z_TAG_NAME}
+
+
+# 构建顺序
+stages:
+  - develop
+  - build
+  - deploy
+  
+pull_master:
+  stage: develop
+  only:
+    refs:
+      - triggers
+  script:
+    - echo "合并master到${Z_BRANCH}"
+    - git fetch
+    - git checkout $Z_BRANCH
+    - git pull origin $Z_BRANCH
+    - git pull origin master
+    - echo "分支${Z_BRANCH}拉去master成功"
+  tags: 
+    - shared_runner
+    
+
+
+build:
+  stage: build
+  only:
+    refs:
+      - triggers
+    variables:
+      - $Z_TAG_NAME =~ /^release_.*$/
+  script:
+    - echo "---build start---"
+    - pwd
+    - node -v
+    - npm -v
+    - npm config set registry ${NPM}
+    - npm install
+    - ls -al
+    - version=${Z_TAG_NAME} npm run build
+    - pwd
+    - ls -al
+    - echo "---build end---"
+  tags:
+    - shared_runner
+  artifacts:
+    name: 'dist'
+    paths:
+      - dist/
+      - Dockerfile
+      
+
+deploy:
+  stage: deploy
+  only:
+    refs:
+      - triggers
+  script:
+    - pwd
+    - echo ${CI_COMMIT_TAG}
+    - echo ${CI_COMMIT_REF_NAME}
+    - mkdir -p ${DIST_PATH}/${BUILD_VERSION} 
+    - cp -r dist ${DIST_PATH}/${BUILD_VERSION}/  && cp -r Dockerfile ${DIST_PATH}/${BUILD_VERSION}/
+    - cd ${DIST_PATH}
+    - pwd
+    - echo "---清除${DIST_PATH}/${DIR1}超过数量的构建包---"
+    - curl -o ./clear.sh -v ${CLEAR_PATH}
+    - sh ./clear.sh 0 3
+    - sh ./clear.sh 1 1
+    - ls -ll
+  tags:
+    - shared_runner
+  dependencies:
+    - build

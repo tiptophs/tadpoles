@@ -1,0 +1,11 @@
+{
+  "zh": {
+    "vue": "Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。"
+  },
+  "en": {
+    "vue": "Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries."
+  },
+  "tw": {
+    "vue": "Vue（讀音/vju ː/， 類似於view）是一套用於構建使用者介面的漸進式框架。 與其它大型框架不同的是，Vue被設計為可以自底向上逐層應用。 Vue的覈心庫只關注視圖層，不僅易於上手，還便於與協力廠商庫或既有項目綜合。 另一方面，當與現代化的工具鏈以及各種支持類別庫結合使用時，Vue也完全能够為複雜的單頁應用提供驅動。"
+  }
+}

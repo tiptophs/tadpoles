@@ -1,0 +1,49 @@
+# EditorConfig is awesome: https://EditorConfig.org
+# 磨平ide之间的规范差距，都是些基础配置
+
+# top-most EditorConfig file
+# 顶层配置文件，设置为true, 停止向上查询.editorconfig
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf # lf(linux) crlf
+insert_final_newline = true # 通配符全局文件, 保存时底部先开一行
+charset = utf-8 # 默认文件编码
+indent_style = space # 间距方式
+indent_size = 2 # 间距大小
+trim_trailing_whitespace = true  # 自动删除行为空格
+
+# md文件保持行尾三空格的换行模式正常换行
+[*.md]
+insert_final_newline =  false
+trim_trailing_whitespace = false
+
+
+# =====================================================================
+# Matches multiple files with brace expansion notation
+# Set default charset
+# 通配符匹配指定类型文件
+#[*.{js,py}]
+#charset = utf-8
+
+# 4 space indentation
+# 通配符匹配pyhton文件类型间距
+#[*.py]
+#indent_style = space
+#indent_size = 4
+
+# Tab indentation (no size specified)
+# tab的方式不需要设置indent_size
+#[Makefile]
+#indent_style = tab
+
+# Indentation override for all JS under lib directory
+[lib/**.js]
+#indent_style = space
+#indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+#[{package.json,.travis.yml}]
+#indent_style = space
+#indent_size = 2
