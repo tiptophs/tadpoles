@@ -10,9 +10,9 @@ export default [
     // 添加根层级,字段默认false,处理全屏error等
     isRoot: false,
     // route level code-splitting 代码切割
-    // this generates a separate chunk (vant-demo.[hash].js) for this route 切割文件hash
+    // this generates a separate chunk (vant-case.[hash].js) for this route 切割文件hash
     // which is lazy-loaded when the route is visited. 懒加载
-    component: () => import(/* webpackChunkName: "vant-demo" */ '@/pages/case/index.vue'),
+    component: () => import(/* webpackChunkName: "vant-case" */ '@/pages/case/index.vue'),
   },
   {
     path: '/case',
@@ -24,8 +24,8 @@ export default [
     // 添加根层级,字段默认false,处理全屏error等
     isRoot: false,
     // route level code-splitting 代码切割
-    // this generates a separate chunk (vant-demo.[hash].js) for this route 切割文件hash
+    // this generates a separate chunk (vant-case.[hash].js) for this route 切割文件hash
     // which is lazy-loaded when the route is visited. 懒加载
-    component: () => import(/* webpackChunkName: "vant-demo" */ '@/pages/case/case.vue'),
+    component: () => import(/* webpackChunkName: "vant-case" */ '@/pages/case/case.vue'),
   },
 ]

@@ -1,6 +1,7 @@
 // vue inspect > output.js 配置分析
 // 采用包分析工具
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const { name } = require('./package')
 //prerender-spa-plugin基本用法 spa
 //const PrerenderSPAPlugin = require('prerender-spa-plugin')
 //const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
@@ -46,7 +47,7 @@ module.exports = {
 
     // 配置devServe
     config.devServer
-      .port(8080)
+      .port(8000)
       .clientLogLevel('warning') // 日志等级 默认info
       .hot(true) // 热更新
       .compress(true) // gzip需要后端配合
@@ -54,6 +55,9 @@ module.exports = {
       .quiet(true) //控制台中不输出打包的信息
       .proxy(proxyTable)
       .before(mockServer)
+      .headers({
+        'Access-Control-Allow-Origin': '*',
+      })
 
     // 添加环境变量到index.html
     config.plugin('html-index').tap(args => {
@@ -134,6 +138,11 @@ module.exports = {
       assetFilter(assetFilename) {
         return assetFilename.endsWith('.js')
       },
+    },
+    output: {
+      library: `${name}-[name]`,
+      libraryTarget: 'umd', // 把微应用打包成 umd 库格式
+      jsonpFunction: `webpackJsonp_${name}`,
     },
     // plugins: [
     //   new PrerenderSPAPlugin({
