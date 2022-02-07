@@ -11,5 +11,6 @@ module.exports = {
   rules: {
     // 值为null的时候为禁用该规则
     'no-descending-specificity': null,
+    'no-empty-source':null
   },
 }

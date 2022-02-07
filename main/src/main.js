@@ -8,7 +8,7 @@ import { i18n } from '@/common/i18n/index'
 import 'normalize.css'
 // 引入乾坤主框架, 和微应用路径
 import microApps from './config/micro-apps'
-import { registerMicroApps, start } from 'qiankun'
+import { registerMicroApps, start, setDefaultMountApp } from 'qiankun'
 
 // 取消console内的提示信息
 Vue.config.productionTip = false
@@ -25,7 +25,11 @@ new Vue({
   store,
   i18n,
   render: h => h(App),
-}).$mount('#app')
+})
+  .$mount('#app')
+  .$nextTick(() => {
+    console.log(document.getElementById('app'), 'app应用挂载')
+  })
 
 // 注册微应用
 registerMicroApps(microApps, {
@@ -53,5 +57,5 @@ registerMicroApps(microApps, {
     },
   ],
 })
-// 启动 qiankun
+
 start()

@@ -4,8 +4,7 @@ import router from './router'
 import store from '@/store'
 import { i18n } from '@/common/i18n/index'
 import 'normalize.css'
-// 乾坤子应用
-import './public-path'
+import './public-path' // 乾坤子应用
 
 // 取消console内的提示信息
 Vue.config.productionTip = false
@@ -33,13 +32,17 @@ if (!window.__POWERED_BY_QIANKUN__) {
   render()
 }
 
-// 到处三个生命周期函数
+// 导处三个生命周期函数
 export async function bootstrap() {
   console.log('[vue] vue app bootstraped')
 }
 
 export async function mount(props) {
   console.log('[vue] props from main framework', props)
+  // 设置高度和宽度沾满当前容器
+  props.container.style.height = '100%'
+  props.container.style.width = '100%'
+  render(props)
 }
 
 export async function unmount() {
