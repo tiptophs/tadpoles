@@ -2,7 +2,7 @@
 const microApps = [
   {
     name: 'sub-vue',
-    entry: '//localhost:6000/',
+    entry: '//localhost:8000/',
     activeRule: '/sub-vue',
     container: '#subapp-viewport', // 子应用挂载的div
     props: {

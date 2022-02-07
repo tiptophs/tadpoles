@@ -37,9 +37,9 @@ function pathToRouter(routes, pathInfo) {
  */
 const initRouter = function (noPath, rootDirect) {
   // 定义非匹配路由的跳转地址
-  const _NO_MATCH_ROUTER_PATH = noPath || '/demo'
+  const _NO_MATCH_ROUTER_PATH = noPath
   // 定义输入/根节点后的redirect
-  const _ROOT_MATCH_REDIRECT = rootDirect || '/demo'
+  const _ROOT_MATCH_REDIRECT = rootDirect
 
   // 定义通用路由
   const routes = [
@@ -81,8 +81,8 @@ const initRouter = function (noPath, rootDirect) {
     // 路由通配符,当项目无法匹配到相应的路由地址将会走这里,他必须写在最下面
     mixConfig.routes.push({
       path: '*',
-      beforeEnter: () => {
-        window.location.href = _NO_MATCH_ROUTER_PATH
+      beforeEnter: (to, from, next) => {
+        next(_NO_MATCH_ROUTER_PATH)
       },
     })
     return new VueRouter(mixConfig)

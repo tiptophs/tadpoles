@@ -40,22 +40,22 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
-  height: 100vh;
-  width: 100vw;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   font-size: 32px;
   font-weight: bold;
-  justify-content: center;
-  align-items: center;
   .title {
-    text-align: center;
     width: 425px;
+    text-align: center;
     .content {
       font-size: 18px;
       ul {
-        list-style-type: disclosure-closed;
         display: flex;
         justify-content: space-between;
+        list-style-type: disclosure-closed;
       }
     }
   }
