@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 // 引入封装侯的router, vuex, i18b
-import router from './router'
+import router from '@/router'
 import store from '@/store'
 import { i18n } from '@/common/i18n/index'
 // 引入底层样式
@@ -31,7 +31,7 @@ new Vue({
     console.log(document.getElementById('app'), 'app应用挂载')
   })
 
-// 注册微应用
+// 注册微应用, 并展示各个阶段的生命周期(该生命周期是基于single-spa的)
 registerMicroApps(microApps, {
   beforeLoad: app => {
     console.log('before load app.name====>>>>>', app.name)
@@ -57,5 +57,5 @@ registerMicroApps(microApps, {
     },
   ],
 })
-
+// 开启qiankun
 start()
