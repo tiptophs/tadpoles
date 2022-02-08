@@ -3,10 +3,39 @@
     <!--这是布局的模板, 用于基座之间的布局-->
     <div class="cus-layout">
       <header class="header">
-        <button @click="aaa">1111</button>
+        <span class="title">Tadpoles</span>
       </header>
       <section class="container">
-        <div class="left-menu"></div>
+        <div class="left-menu">
+          <el-menu class="el-menu-vertical-demo" default-active="2" router>
+            <el-submenu index="4">
+              <template slot="title">
+                <i class="el-icon-reading"></i>
+                <span>主体应用(基座)</span>
+              </template>
+              <el-menu-item index="/qiankun">乾坤</el-menu-item>
+              <el-menu-item index="/prompt" route>兼容界面</el-menu-item>
+            </el-submenu>
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-reading"></i>
+                <span>Vue</span>
+              </template>
+              <el-menu-item index="/sub-vue">Vuer2.6</el-menu-item>
+            </el-submenu>
+            <el-submenu index="2">
+              <template slot="title">
+                <i class="el-icon-reading"></i>
+                <span>React</span>
+              </template>
+              <el-menu-item index="2-1">React</el-menu-item>
+            </el-submenu>
+            <el-menu-item index="3">
+              <i class="el-icon-menu"></i>
+              <span slot="title">Sub-Html</span>
+            </el-menu-item>
+          </el-menu>
+        </div>
         <div class="content"><router-view /></div>
         <div class="right-menu"></div>
       </section>
@@ -17,11 +46,7 @@
 <script>
 export default {
   name: 'layout',
-  methods: {
-    aaa() {
-      console.log('222')
-    },
-  },
+  methods: {},
 }
 </script>
 

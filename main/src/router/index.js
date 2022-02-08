@@ -2,20 +2,22 @@ import { initRouter } from '@/common/vue-bucket-init/router'
 import { routeInterceptor } from './intercept'
 import microApps from '@/config/micro-apps' // 加载微服务的基础路由
 
-// 重写不存在路由的情况下界面的跳转，微服务的路由地址会进入这里
-const microRouter = {
-  path: '*',
-  isRoot: false, // 全部默认为false
-  beforeEnter: (to, from, next) => {
-    const isMicro = microApps.map(item => { return item.name }).indexOf(to.path.split('/')['1']) !== -1
-    // 需要条件
-    isMicro? next() : next('/prompt')
-  },
-  component: () => import(/* webpackChunkName: "microapps" */ '@/components/micro'),
-}
-// 抛出router, routes
-const { newVueRouter, routes } = initRouter(microRouter, '/sub-vue')
-console.log(routes, '===xxxx=')
+// 抛出router, routes (若/跳转的地址为微服务, 该选项将会失效, 可以尝试如上修复)
+const { newVueRouter, routes, pathToRouter } = initRouter('/prompt', '/qiankun')
+// 注册微服务路由地址
+microApps.forEach(item => {
+  const microAppRoute = {
+    path: `/${item.name}/:chapters*`,
+    name: item.name,
+    // 添加根层级,字段默认false,处理全屏error等
+    isRoot: false,
+    // route level code-splitting 代码切割
+    // this generates a separate chunk (vant-case.[hash].js) for this route 切割文件hash
+    // which is lazy-loaded when the route is visited. 懒加载
+    component: () => import(/* webpackChunkName: "microapps" */ '@/components/micro'),
+  }
+  pathToRouter(routes, microAppRoute)
+})
 // 创建自定义router
 const router = newVueRouter({ routes })
 // 加载路由守卫

@@ -79,21 +79,17 @@ const initRouter = function (noPath, rootDirect) {
     }
     const mixConfig = Object.assign(defaultConfig, config)
     // 路由通配符,当项目无法匹配到相应的路由地址将会走这里,他必须写在最下面
-    if (typeof _NO_MATCH_ROUTER_PATH === 'object') {
-      pathToRouter(mixConfig.routes, _NO_MATCH_ROUTER_PATH)
-    } else {
-      mixConfig.routes.push({
-        path: '*',
-        beforeEnter: (to, from, next) => {
-          next(_NO_MATCH_ROUTER_PATH)
-        },
-      })
-    }
-
+    mixConfig.routes.push({
+      path: '*',
+      beforeEnter: (to, from, next) => {
+        next(_NO_MATCH_ROUTER_PATH)
+      },
+    })
     return new VueRouter(mixConfig)
   }
   return {
     newVueRouter,
+    pathToRouter,
     routes,
   }
 }

@@ -57,5 +57,8 @@ registerMicroApps(microApps, {
     },
   ],
 })
+
+// 设置主应用启动后默认进入的微应用。(使用自己的跳转)
+// setDefaultMountApp('/sub-vue')
 // 开启qiankun
 start()
