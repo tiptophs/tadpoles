@@ -6,8 +6,11 @@ import store from '@/store'
 import { i18n } from '@/common/i18n/index'
 // 引入底层样式
 import 'normalize.css'
+//引入进度条
+import 'nprogress/nprogress.css'
 // 引入乾坤主框架, 和微应用路径
 import microApps from './config/micro-apps'
+// eslint-disable-next-line
 import { registerMicroApps, start, setDefaultMountApp } from 'qiankun'
 
 // 取消console内的提示信息
@@ -20,19 +23,31 @@ elComponents.forEach(item => {
 })
 
 // 渲染主应用
-new Vue({
+const instance = new Vue({
   router,
   store,
   i18n,
   render: h => h(App),
+}).$mount('#app')
+
+// 定义loader方法，loading改变时，将变量赋值给App.vue的data中的isLoading
+function loader(loading) {
+  if (instance && instance.$children) {
+    // instance.$children[0] 是App.vue，此时直接改动App.vue的isLoading
+    instance.$children[0].isLoading = loading
+  }
+}
+
+// 给子应用配置加上loader方法
+const apps = microApps.map(item => {
+  return {
+    ...item,
+    loader,
+  }
 })
-  .$mount('#app')
-  .$nextTick(() => {
-    console.log(document.getElementById('app'), 'app应用挂载')
-  })
 
 // 注册微应用, 并展示各个阶段的生命周期(该生命周期是基于single-spa的)
-registerMicroApps(microApps, {
+registerMicroApps(apps, {
   beforeLoad: app => {
     console.log('before load app.name====>>>>>', app.name)
   },
