@@ -12,7 +12,9 @@ import 'nprogress/nprogress.css'
 import microApps from './config/micro-apps'
 // eslint-disable-next-line
 import { registerMicroApps, start, setDefaultMountApp } from 'qiankun'
-
+// 初始化gloState
+import gloState from '@/common/qiankun/global-state'
+window.$gloState = gloState
 // 取消console内的提示信息
 Vue.config.productionTip = false
 

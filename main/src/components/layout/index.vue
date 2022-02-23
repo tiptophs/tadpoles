@@ -45,16 +45,14 @@
 </template>
 
 <script>
-import store from '@/store/qiankun/global-state'
 export default {
   name: 'layout',
   computed: {
     state() {
       // 如果只需要取某个命名空间下的state，比如 user ，可以加上参数
       // return store.getGlobalState('user')
-
       // 返回所有的state则不需添加参数
-      return store.getGlobalState()
+      return window.$gloState.getGlobalState()
     },
   },
   methods: {},

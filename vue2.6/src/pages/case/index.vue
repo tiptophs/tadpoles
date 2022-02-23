@@ -1,5 +1,9 @@
 <template>
   <div class="home">
+    <div class="global-state-demo">
+      <div>全局状态通信</div>
+      <div class="btns"><el-button type="primary" @click="changeUsername">点击修改状态</el-button></div>
+    </div>
     <div class="title">
       <img alt="Vue logo" src="./source/img/logo.png" />
       <div>hello Vue2.6 App</div>
@@ -22,20 +26,32 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
   components: {},
   props: {},
   data() {
     return {}
   },
-  beforeCreate() {},
-  created() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  methods: {},
+  computed: {
+    // 通过global获取user的信息
+    ...mapState('global', {
+      user: state => state.user,
+    }),
+    isInQiankun() {
+      return window.__POWERED_BY_QIANKUN__
+    },
+  },
+  methods: {
+    // setGlobalState 是在 /common/src/store/global-register.js中定义的
+    ...mapActions('global', ['setGlobalState']),
+    changeUsername() {
+      // 也可通过 store.commit('global/setGlobalState', { user: '李四' }) 进行操作
+      this.setGlobalState({
+        user: { name: '李四' + Math.round(Math.random() * 100) },
+      })
+    },
+  },
 }
 </script>
 <style lang="less" scoped>
