@@ -4,17 +4,18 @@
     <div class="cus-layout">
       <header class="header">
         <span class="title">Tadpoles</span>
+        <span class="userinfo" style="margin-left: 25px">主应用的state：{{ JSON.stringify(state) }}</span>
       </header>
       <section class="container">
         <div class="left-menu">
-          <el-menu class="el-menu-vertical-demo" default-active="2" router>
+          <el-menu class="el-menu-vertical-demo" default-active="/qiankun" router>
             <el-submenu index="4">
               <template slot="title">
                 <i class="el-icon-reading"></i>
                 <span>主体应用(基座)</span>
               </template>
               <el-menu-item index="/qiankun">乾坤</el-menu-item>
-              <el-menu-item index="/prompt" route>兼容界面</el-menu-item>
+              <el-menu-item index="/prompt">兼容界面</el-menu-item>
             </el-submenu>
             <el-submenu index="1">
               <template slot="title">
@@ -44,8 +45,18 @@
 </template>
 
 <script>
+import store from '@/store/qiankun/global-state'
 export default {
   name: 'layout',
+  computed: {
+    state() {
+      // 如果只需要取某个命名空间下的state，比如 user ，可以加上参数
+      // return store.getGlobalState('user')
+
+      // 返回所有的state则不需添加参数
+      return store.getGlobalState()
+    },
+  },
   methods: {},
 }
 </script>

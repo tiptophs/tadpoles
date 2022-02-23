@@ -25,7 +25,7 @@ const request = axios.create({
       return qs.stringify(data)
     },
   ],
-  paramsSerializer: function (params) {
+  paramsSerializer(params) {
     return qs.stringify(params, { arrayFormat: 'brackets' })
   },
 })
